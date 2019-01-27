@@ -34,7 +34,7 @@ router.post("/register", (req, res) => {
 
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      errors.email = "Email Already Exists";
+      errors.Email = "Email Already Exists";
       return res.status(400).json(errors);
     } else {
       // const newAvatar = gravatar({
@@ -79,8 +79,8 @@ router.post("/login", (req, res) => {
 
   User.findOne({ email }).then(user => {
     if (!user) {
-      errors.email = "User not found";
-      return res.status(404).json({ errors });
+      errors.Email = "User not found";
+      return res.status(404).json(errors);
     }
     // Check password
     bcrypt.compare(password, user.password).then(match => {
@@ -103,7 +103,7 @@ router.post("/login", (req, res) => {
         );
       } else {
         errors.password = "password incorrect";
-        res.status(404).json({ errors });
+        res.status(404).json(errors );
       }
     });
   });
